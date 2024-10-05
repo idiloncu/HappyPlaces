@@ -3,6 +3,7 @@ package com.example.happyplaces
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.happyplaces.activities.AddHappyPlaceActivity
 import com.example.happyplaces.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

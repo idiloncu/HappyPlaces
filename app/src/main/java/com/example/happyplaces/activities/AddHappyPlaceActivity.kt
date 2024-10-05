@@ -1,4 +1,4 @@
-package com.example.happyplaces
+package com.example.happyplaces.activities
 
 import android.Manifest
 import android.app.AlertDialog
@@ -10,8 +10,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.happyplaces.R
 import com.example.happyplaces.databinding.ActivityAddHappyPlaceBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -21,6 +21,9 @@ class AddHappyPlaceActivity : AppCompatActivity(),View.OnClickListener {
     private var binding: ActivityAddHappyPlaceBinding? = null
     private var calender = Calendar.getInstance()
     private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
+    private var saveImageToInternalStorage: Uri? = null
+    private var mLatitude: Double = 0.0
+    private var mLongitude: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +42,14 @@ class AddHappyPlaceActivity : AppCompatActivity(),View.OnClickListener {
             updateInView()
         }
         binding!!.etDate.setOnClickListener(this)
+        binding!!.tvAddImage.setOnClickListener(this)
+        binding!!.btnSave.setOnClickListener(this)
 
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            R.id.et_date->{
+            R.id.et_date ->{
                 DatePickerDialog(this@AddHappyPlaceActivity,dateSetListener,
                     calender.get(Calendar.YEAR),
                     calender.get(Calendar.MONTH),
@@ -60,7 +65,7 @@ class AddHappyPlaceActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun takePhotoFromCamera(){
-        if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+        if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED ){
 
         }
     }
